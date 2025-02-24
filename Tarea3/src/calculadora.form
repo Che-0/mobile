@@ -15,7 +15,9 @@
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <background color="-3152439"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="2629" class="javax.swing.JButton" binding="botonResta">
@@ -47,6 +49,8 @@
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="Courier New" size="16" style="1"/>
+              <iconTextGap value="9"/>
               <text value="UWU"/>
             </properties>
           </component>
@@ -169,7 +173,9 @@
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <font name="Courier New" size="26" style="0"/>
+        </properties>
         <border type="none"/>
         <children>
           <component id="ba605" class="javax.swing.JLabel" binding="entradaDatos">
