@@ -47,7 +47,7 @@ public class calculadora {
     // valorF es la variable que guardara el valor de las operaciones que se realicen
     int valorF=0;
 
-    float valorFF=0.f;
+    float valorFF = 0;
 
     //datoMemoria es la variable que guardara los datos que se ingresen en la calculadora
     String datoMemoria ="0";
@@ -110,10 +110,16 @@ public class calculadora {
             esperaDivision = false;
         }
         if(seutilizoPunto){
-            valorFF = valorFF + parseofloat(datoenlaMemoria);
+            //valorFF = valorFF + parseofloat("."+datoenlaMemoria);
+            System.out.println("El valor de la memoria es "+datoenlaMemoria);
+            System.out.println("Paso 1 sumar ff"+valorFF+" con el dato "+datoenlaMemoria); ;
+            String piv = valorFF+datoenlaMemoria;
+            System.out.println(piv);
+            valorFF = Float.parseFloat(piv);
             System.out.println("El valor despues de sumar es "+valorFF);
-            datoMemoria = "0";
+            //datoMemoria = "0";
             esperaDecimal = false;
+            seutilizoPunto = false;
         }
 
     }
@@ -143,8 +149,16 @@ public class calculadora {
     public void resta(){
         esperaResta = true;
     }
+
+    int contadorCopiaUnica = 0;
     public void decimal(){
         esperaDecimal = true;
+        seutilizoPunto = true;
+        if (contadorCopiaUnica == 0){
+            valorFF = parseofloat(valorF+"");
+            System.out.println("El valor ff "+valorFF);
+            contadorCopiaUnica++;
+        }
     }
 
     public calculadora() {
@@ -228,14 +242,18 @@ public class calculadora {
         botonBorrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+
                 if (!datoMemoria.isEmpty()){
                     datoMemoria =datoMemoria.substring(0, datoMemoria.length() - 1);
                 }
+
 
                 String datos = entradaDatos.getText();
                 if (!datos.isEmpty()){
                     entradaDatos.setText(  datos.substring(0, datos.length() - 1));
                 }
+
             }
         });
 
@@ -326,22 +344,25 @@ public class calculadora {
         botonDecimal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(primeraOperacion){
-                    //Es para cuado se inicia con un numero negativo
-                    if (datoMemoria.isEmpty()){
-                        datoMemoria = "0";
-                    }
-                    primeraOperacion = false;
-                }
-                utilizarFlotantes = true;
+//                if(primeraOperacion){
+//                    //Es para cuado se inicia con un numero negativo
+//                    if (datoMemoria.isEmpty()){
+//                        datoMemoria = "0";
+//                    }
+//                    primeraOperacion = false;
+//                }
+//
+//                utilizarFlotantes = true;
+
+
                 // se necesita arreglar para que solo lo haga una vez
-                //valorFF = parseofloat(datoMemoria);
-                estadodeResolucion(datoMemoria);
-                decimal();
-                System.out.println("se uso punto memo"+datoMemoria);
-                System.out.println("El valor ff "+valorFF);
-                //datoMemoria = "0";
-                entradaDatos.setText(entradaDatos.getText()+".");
+//
+//                estadodeResolucion(datoMemoria);
+//                decimal();
+//                System.out.println("se uso punto memo"+datoMemoria);
+//                System.out.println("El valor ff "+valorFF);
+//                datoMemoria = "";
+//                entradaDatos.setText(entradaDatos.getText()+".");
             }
         });
 
@@ -349,8 +370,9 @@ public class calculadora {
             @Override
             public void actionPerformed(ActionEvent e) {
                 estadodeResolucion(datoMemoria);
-                entradaDatos.setText(entradaDatos.getText()+"="+valorF);
+                entradaDatos.setText(""+valorF);
                 System.out.println("El valor final es "+valorFF);
+                valorF = 0;
             }
         });
         UWUButton.addActionListener(new ActionListener() {
@@ -377,7 +399,3 @@ public class calculadora {
 
     }
 }
-
-
-
-
