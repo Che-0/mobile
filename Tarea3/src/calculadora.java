@@ -372,6 +372,7 @@ public class calculadora {
                 estadodeResolucion(datoMemoria);
                 entradaDatos.setText(""+valorF);
                 System.out.println("El valor final es "+valorFF);
+                datoMemoria = "0";
                 valorF = 0;
             }
         });
