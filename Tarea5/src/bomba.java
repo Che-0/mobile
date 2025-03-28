@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -8,7 +7,6 @@ public class bomba {
     private JPanel contador;
     private JPanel botones;
     private JLabel seg1;
-    private JLabel seg2;
     private JButton iniciar;
     private JButton reset;
 
@@ -37,7 +35,9 @@ public class bomba {
 
                 // Timer para actualizar el contador cada segundo (1000 ms)
                 // si queremos aumentar el tiempo de actualización, cambiar el valor de 1000 a ps algo mas corto
-                timer = new Timer(100, new ActionListener() {
+                // 10 en putiza
+                // 100 mas o menos
+                timer = new Timer(10, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if (corriendo) {
@@ -74,7 +74,7 @@ public class bomba {
     }
 
     public void dimencion() {
-        mainventana.setPreferredSize(new Dimension(950, 560));
+        //mainventana.setPreferredSize(new Dimension(3000, 300));
     }
 
     public static void main(String[] args) {
@@ -82,9 +82,51 @@ public class bomba {
             JFrame frame = new JFrame("bomba");
             frame.setContentPane(new bomba().mainventana);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(300, 300);
+
             frame.pack();
+            frame.setSize(600, 120);
             frame.setVisible(true);
         });
     }
 }
+
+/*
+
+                ..
+                ..           ..--::..
+                ..         .-:.     .::
+                ..         -.         ::                        .---=:
+                ..        .:           -.                    .:-.     :.
+                ..        -.           :-                  ..-.       .+.
+                          -:           .=.                .--         .=.
+                          ..           .=:               .--          :+.
+                          -:            -:               -=           :=
+                          .:            =-              .-.           ::
+                           :            --             .=:            -.
+                           :.           .:             ::            --.
+                           .:           :-            .-.           .+.
+                           .-.          --            -:            =.        ..
+                            ..         .+:           .=.          .*:         ..
+                             -:         .:.....  ....:-:         .+.          ..
+                              .. .:                           .==-            ..
+                              :=-.                              .==
+                           :+:                                     --
+                          :+          ...                           .+:
+                         .+.          :*-                :=-.        -=.
+                        .=:          .*%%%=.          :++#=           -.
+                        .-           :*#%#=.          -#%#*.          :=
+                        .:                             .:.            :+.
+                        .:                                            -:
+                        .:                    :###*.                  =.
+                        .::                .:   .-.  .:             .=-
+                         .=-               .::.:-::::-.             =+.
+                           :+.                .                     =.
+                             .+=..                               .==
+                                .==..                        .:==
+                                .=:::-=:.               .:===--
+                                .=..-:...-===++=+=++--:...   :-
+                                .=:::-:::.:                  --
+                                :=.:.                        --
+                                --..                  .--=+*=*:
+                                  .-==++**+****+*++=-:...
+ */
