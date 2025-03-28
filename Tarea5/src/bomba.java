@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 public class bomba {
     private JPanel mainventana;
@@ -15,8 +13,14 @@ public class bomba {
     private JButton reset;
 
     private Timer timer;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private int horas = 0;
+    private int minutos = 0;
+    private int segundos = 0;
     private boolean corriendo = false;
+
+    private void actualizarLabel() {
+        seg1.setText(String.format("%02d:%02d:%02d", horas, minutos, segundos));
+    }
 
     public bomba() {
         iniciar.addActionListener(new ActionListener() {
@@ -26,13 +30,27 @@ public class bomba {
                 if (timer != null && timer.isRunning()) {
                     timer.stop();
                 }
+                horas = 0;
+                minutos = 0;
+                segundos = 0;
+                actualizarLabel();
 
-                timer = new Timer(1000, new ActionListener() {
+                // Timer para actualizar el contador cada segundo (1000 ms)
+                // si queremos aumentar el tiempo de actualización, cambiar el valor de 1000 a ps algo mas corto
+                timer = new Timer(100, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         if (corriendo) {
-                            LocalTime ahora = LocalTime.now();
-                            seg1.setText(ahora.format(formatter));
+                            segundos++;
+                            if (segundos == 60) {
+                                segundos = 0;
+                                minutos++;
+                                if (minutos == 60) {
+                                    minutos = 0;
+                                    horas++;
+                                }
+                            }
+                            actualizarLabel();
                         }
                     }
                 });
@@ -44,19 +62,13 @@ public class bomba {
             @Override
             public void actionPerformed(ActionEvent e) {
                 corriendo = false;
-                seg1.setText("00:00:00");
+                horas = 0;
+                minutos = 0;
+                segundos = 0;
+                actualizarLabel();
                 if (timer != null && timer.isRunning()) {
                     timer.stop();
                 }
-            }
-        });
-        reset.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                corriendo = false;
-                seg1.setText("00:00:00");
-                if (timer != null && timer.isRunning()) {
-                    timer.stop();}
             }
         });
     }
